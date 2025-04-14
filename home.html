@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>متجر المنقذ</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .slider-container {
+      width: 90%;
+      max-width: 700px;
+      margin: 40px auto;
+      overflow: hidden;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      padding: 30px 80px; /* زوّدنا المسافة حول السلايدر */
+      box-sizing: border-box;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 30px;
+      text-align: right;
+    }
+
+    .slide p {
+      font-size: 18px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .slide span {
+      display: block;
+      margin-top: 10px;
+      color: #004080;
+      font-weight: bold;
+    }
+
+    .arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      transition: 0.3s;
+      z-index: 10;
+    }
+
+    .arrow-btn:hover {
+      background-color: #0066cc;
+    }
+
+    .prev-btn {
+      left: 10px;
+    }
+
+    .next-btn {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛟🚤 Saviour Store | متجر المنقذ</h1> 
+
+  <div class="products">
+    <!-- قارب أصفر -->
+    <div class="product">
+      <a href="yellow-boat.html">
+        <img src="yellow.jpg" width="300">
+      </a>
+      <h2>قارب نجاة أصفر</h2>
+      <p>السعة: 20 شخص</p>
+      <p>السعر: 250,000 ريال</p>
+      <a href="yellow-boat.html">
+        <button>📄 تفاصيل أكثر</button>
+      </a>
+      <button onclick="addToCart('قارب نجاة أصفر', 250000)">أضف إلى السلة</button>
+    </div>
+
+    <!-- قارب برتقالي -->
+    <div class="product">
+      <a href="orange-boat.html">
+        <img src="orange.jpg" alt="قارب نجاة برتقالي" width="300">
+      </a>
+      <h2>قارب نجاة برتقالي</h2>
+      <p>السعة: 20 شخص</p>
+      <p>السعر: 250,000 ريال</p>
+      <a href="orange-boat.html">
+        <button>📄 تفاصيل أكثر</button>
+      </a>
+      <button onclick="addToCart('قارب نجاة برتقالي', 250000)">أضف إلى السلة</button>
+    </div>
+  </div>
+
+  <!-- روابط الصفحات الإضافية -->
+  <a href="about.html"><button>📘 من نحن</button></a>
+  <a href="order.html"><button>🧾 اطلب الآن</button></a>
+
+  <h2>🛒 سلة المشتريات:</h2>
+  <ul id="cart"></ul>
+  <p id="total">الإجمالي: 0 ريال</p>
+  <button onclick="clearCart()" class="clear-btn">🧹 إفراغ السلة</button>
+  <button onclick="sendOrder()">📤 إرسال الطلب عبر واتساب</button>
+
+  <!-- 💬 آراء العملاء -->
+  <h2>💬 آراء العملاء</h2>
+  <div class="slider-container">
+    <button class="arrow-btn prev-btn" onclick="showPrevSlide()">⬅️</button>
+
+    <div class="slider" id="testimonialSlider">
+      <div class="slide">
+        <p>⭐️⭐️⭐️⭐️⭐️</p>
+        <p>"الخدمة ممتازة والقارب وصلني بجودة عالية!"</p>
+        <span>- محمد من جدة</span>
+      </div>
+      <div class="slide">
+        <p>⭐️⭐️⭐️⭐️</p>
+        <p>"القارب عملي جداً ومرن بالتنقل، أنصح فيه!"</p>
+        <span>- سارة من الرياض</span>
+      </div>
+      <div class="slide">
+        <p>⭐️⭐️⭐️⭐️⭐️</p>
+        <p>"تجربة رائعة من أول طلب، شكراً فريق المنقذ!"</p>
+        <span>- خالد من الدمام</span>
+      </div>
+    </div>
+
+    <button class="arrow-btn next-btn" onclick="showNextSlide()">➡️</button>
+  </div>
+
+  <!-- 📜 سكربتات -->
+  <script src="script.js"></script>
+<script>
+  // تشغيل السلة
+  updateCart();
+
+  function sendOrder() {
+    if (!cart.length) {
+      alert("السلة فارغة!");
+      return;
+    }
+
+    let message = "مرحباً، أود طلب المنتجات التالية:\n";
+    cart.forEach(item => {
+      message += `- ${item.name}: ${item.price} ريال\n`;
+    });
+    message += `\nالإجمالي: ${total} ريال`;
+
+    const phone = "966535364433";
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
+
+  // سلايدر آراء العملاء
+  let currentIndex = 0;
+  const slides = document.querySelectorAll(".slide");
+  const slider = document.getElementById("testimonialSlider");
+
+  function showNextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlider();
+  }
+
+  function showPrevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlider();
+  }
+
+  function updateSlider() {
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  setInterval(showNextSlide, 4000);
+</script>
+
+</body>
+</html>

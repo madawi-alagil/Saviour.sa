@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>طلب منتج - متجر المنقذ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>📦 نموذج الطلب</h1>
+
+  <div class="order-form">
+    <form onsubmit="sendOrder(event)">
+      <input type="text" id="name" placeholder="الاسم الكامل" required><br>
+      <input type="tel" id="phone" placeholder="رقم الجوال" required><br>
+      <input type="text" id="city" placeholder="المدينة" required><br>
+      <input type="text" id="product" placeholder="اسم المنتج المطلوب" required><br>
+      <textarea id="notes" placeholder="ملاحظات إضافية (اختياري)"></textarea><br>
+      <button type="submit">📤 إرسال الطلب عبر واتساب</button>
+    </form>
+
+    <a href="home.html">
+      <button style="margin-top: 20px;">⬅️ الرجوع للصفحة الرئيسية</button>
+    </a>
+  </div>
+
+  <script>
+    function sendOrder(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const city = document.getElementById("city").value;
+      const product = document.getElementById("product").value;
+      const notes = document.getElementById("notes").value;
+
+      let message = `مرحبًا، لدي طلب جديد:\n\n`;
+      message += `👤 الاسم: ${name}\n📱 الجوال: ${phone}\n🏙️ المدينة: ${city}\n📦 المنتج: ${product}\n📝 ملاحظات: ${notes || "لا توجد"}\n`;
+
+      const phoneNumber = "966535364433";
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>

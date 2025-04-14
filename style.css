@@ -1,0 +1,228 @@
+/* 🌊 صورة المنتج */
+.product img {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 🧸 خلفية الصفحة */
+body {
+  background-color: #add8e6;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* 🏷️ عنوان الموقع */
+h1 {
+  font-size: 40px;
+  color: #004080;
+  margin-bottom: 20px;
+}
+
+/* 🧺 الحاوية العامة للمنتجات */
+.products {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* 🧊 كرت المنتج */
+.product {
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px;
+  width: 320px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* 🔘 الأزرار العامة */
+button {
+  background-color: #004080;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0066cc;
+}
+
+/* ❌ زر الحذف */
+.remove-btn {
+  background-color: #c0392b;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.remove-btn:hover {
+  background-color: #e74c3c;
+}
+
+/* 🔄 زر إفراغ السلة */
+.clear-btn {
+  background-color: #777;
+}
+
+.clear-btn:hover {
+  background-color: #555;
+}
+
+/* 🧾 من نحن */
+.about-container {
+  background-color: white;
+  width: 80%;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: right;
+  font-size: 18px;
+  color: #333;
+  line-height: 2;
+}
+
+.about-container a {
+  color: #004080;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.about-container a:hover {
+  text-decoration: underline;
+}
+
+/* 📦 نموذج الطلب */
+.order-form {
+  background-color: white;
+  width: 80%;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: right;
+}
+
+.order-form input,
+.order-form textarea {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  direction: rtl;
+}
+
+/* 💬 مراجعات العملاء */
+.reviews {
+  background-color: white;
+  width: 80%;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  text-align: right;
+}
+
+.review {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.review p {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.review span {
+  color: #004080;
+  font-weight: bold;
+  margin-top: 5px;
+  display: block;
+}
+
+/* 🖼️ سلايدر العملاء */
+.slider-container {
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding: 30px 40px; /* قللنا المسافة شوي لتوسيط السهم بدقة */
+  box-sizing: border-box;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  padding: 30px;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+.slide p {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.slide span {
+  display: block;
+  margin-top: 10px;
+  color: #004080;
+  font-weight: bold;
+}
+
+/* 🔁 أزرار السلايدر */
+.arrow-btn {
+  position: absolute;
+  top: 55%; /* يخلي السهم ينزل شوي */
+  transform: translateY(-50%);
+  background-color: #004080;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.arrow-btn:hover {
+  background-color: #0066cc;
+}
+
+/* ⬅️ السهم اليسار */
+.prev-btn {
+  left: 30px; /* أقرب للنص */
+}
+
+/* ➡️ السهم اليمين */
+.next-btn {
+  right: 30px; /* أقرب للنص */
+}
+}
